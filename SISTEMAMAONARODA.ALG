@@ -127,7 +127,7 @@ Inicio
             escreval("Escolha o carro desejado para comprar:")
             escreval("--------------------------------------")
             leia(carroVenda)
-            
+
             escolha carroVenda
              caso 1
               nomeCarro <- "Porsche 911"
@@ -145,7 +145,7 @@ Inicio
               nomeCarro <- "McLaren 720S"
                escreval("Carro escolhido: ", nomeCarro)
             fimescolha
-            
+
 
 
             se carroVenda = 1 entao
@@ -168,6 +168,7 @@ Inicio
                fimse
             fimse
       fimescolha
+      escreval(" ")
       escreval("---------------------------------------")
       escreval("          ","SIMULADOR DE JUROS")
       escreval("---------------------------------------")
@@ -336,7 +337,7 @@ Inicio
                fimse
             fimse
       fimescolha
-      
+
       escreval("------------------------------------------")
       escreval("Digite o número de parcelas (1 a 12): ")
       leia(parcelas)
