@@ -9,6 +9,11 @@ Var
    nomeCarro2 : caractere
    dia : inteiro
    horario : inteiro
+   x : caractere
+   y : caractere
+   diaria : inteiro
+   calc, z, b: real
+   opt : real
 Inicio
 
    // taxa de juros de 1,5 %
@@ -148,6 +153,7 @@ Inicio
 
 
 
+
             se carroVenda = 1 entao
                valorTotal <- 1100000
             senao
@@ -190,7 +196,7 @@ Inicio
       escreval("")
       escreval("------------------------------------------------------------")
       escreval("SOLICITAÇÃO FEITA, AGORA VAMOS AGENDAR UM ATENDIMENTO")
-      escreval("PRESENCIAL PARA FINALIZAR A SUA COMPRA!!")
+      escreval("PRESENCIAL PARA FINALIZAR A SUA COMPRA COM UM ATENDENTE!!")
       escreval("------------------------------------------------------------")
       escreval("Escolha o dia:")
       escreval("")
@@ -200,6 +206,22 @@ Inicio
       escreval("4 - Quinta-Feira")
       escreval("5 - Sexta-Feira")
       leia(dia)
+
+
+      escolha dia
+        caso 1
+          x <- "SEGUNDA-FEIRA"
+        caso 2
+          x <- "TERÇA-FEIRA"
+        caso 3
+          x <- "QUARTA-FEIRA"
+        caso 4
+          x <- "QUINTA-FEIRA"
+        caso 5
+          x <- "SEXTA-FEIRA"
+      fimescolha
+
+
       escreval("------------------------------------------------------------")
       escreval("Horarios Disponiveis: ")
       escreval("")
@@ -207,8 +229,21 @@ Inicio
       escreval("2 - 13:30")
       escreval("3 - 17:00")
       leia(horario)
+
+
+      escolha horario
+        caso 1
+          y <- "9:40"
+        caso 2
+          y <- "13:30"
+        caso 3
+          y <- "17:00"
+      fimescolha
+
+
       escreval("------------------------------------------------------------")
-      escreval("AGENDAMENTO FEITO, OBRIGADO POR ESCOLHER A MÃO NA RODA")
+      escreval("AGENDAMENTO REALIZADO PARA ", x," as ", y)
+      escreval("OBRIGADO POR ESCOLHER A MÃO NA RODA !!")
       escreval("------------------------------------------------------------")
 
 
@@ -230,11 +265,11 @@ Inicio
             escreval("-----------------------------------------")
             escreval("CARROS POPULARES DISPONIVEIS PARA ALUGUEL")
             escreval("-----------------------------------------")
-            escreval("1 - Volkswagen Gol 1.0 | R$ 70.000 ")
-            escreval("2 - Fiat Argo 1.0 | R$ 75.000 ")
-            escreval("3 - Toyota Etios 1.3 | R$ 70.000 ")
-            escreval("4 - Honda Fit 1.5 | R$ 85.000")
-            escreval("5 - Volkswagen Up! 1.0 | R$ 58.000")
+            escreval("1 - Volkswagen Gol 1.0 | R$ 85/Dia ")
+            escreval("2 - Fiat Argo 1.0 | R$ 75/Dia ")
+            escreval("3 - Toyota Etios 1.3 | R$ 70/Dia ")
+            escreval("4 - Honda Fit 1.5 | R$ 85/Dia")
+            escreval("5 - Volkswagen Up! 1.0 | R$ 58/Dia")
             escreval("----------------------------------------")
             escreval("Escolha o carro desejado para alugar:")
             escreval("----------------------------------------")
@@ -262,19 +297,19 @@ Inicio
 
 
             se carroAluguel = 1 entao
-               valorTotal <- 70000
+               valorTotal <- 85
             senao
                se carroAluguel = 2 entao
-                  valorTotal <- 75000
+                  valorTotal <- 75
                senao
                   se carroAluguel = 3 entao
-                     valorTotal <- 70000
+                     valorTotal <- 70
                   senao
                      se carroAluguel = 4 entao
-                        valorTotal <- 85000
+                        valorTotal <- 85
                      senao
                         se carroAluguel = 5 entao
-                           valorTotal <- 58000
+                           valorTotal <- 58
                         fimse
                      fimse
                   fimse
@@ -286,11 +321,11 @@ Inicio
             escreval("------------------------------------------")
             escreval("CARROS ESPORTIVOS DISPONIVEIS PARA ALUGUEL")
             escreval("------------------------------------------")
-            escreval("1 - Porsche 718 Cayman | R$ 450.000 ")
-            escreval("2 - Audi TT | R$ 330.000 ")
-            escreval("3 - Ford Mustang GT | R$ 380.000 ")
-            escreval("4 - BMW M2 | R$ 420.000")
-            escreval("5 - Chevrolet Camaro SS | R$ 330.000")
+            escreval("1 - Porsche 718 Cayman | R$ 450/Dia ")
+            escreval("2 - Audi TT | R$ 330/Dia ")
+            escreval("3 - Ford Mustang GT | R$ 380/Dia ")
+            escreval("4 - BMW M2 | R$ 420/Dia")
+            escreval("5 - Chevrolet Camaro SS | R$ 330/Dia")
             escreval("------------------------------------------")
             escreval("Escolha o carro desejado para alugar:")
             escreval("------------------------------------------")
@@ -318,19 +353,19 @@ Inicio
 
 
             se carroAluguel = 1 entao
-               valorTotal <- 450000
+               valorTotal <- 450
             senao
                se carroAluguel = 2 entao
-                  valorTotal <- 330000
+                  valorTotal <- 330
                senao
                   se carroAluguel = 3 entao
-                     valorTotal <- 380000
+                     valorTotal <- 380
                   senao
                      se carroAluguel = 4 entao
-                        valorTotal <- 420000
+                        valorTotal <- 420
                      senao
                         se carroAluguel = 5 entao
-                           valorTotal <- 330000
+                           valorTotal <- 330
                         fimse
                      fimse
                   fimse
@@ -338,16 +373,33 @@ Inicio
             fimse
       fimescolha
 
+
       escreval("------------------------------------------")
-      escreval("Digite o número de parcelas (1 a 12): ")
-      leia(parcelas)
+      escreval("Quantas diarias gostaria? ")
+      leia(diaria)
 
-      // Cálculo do valor total com juros
-      jurosTotal <- valorTotal * taxaJuros * parcelas
-      valorFinal <- valorTotal + jurosTotal
+      calc <- valorTotal*diaria
+      
+      escreval("Total: ", calc)
+      escreval("")
+      escreval("Escolha uma opcção: ")
+      escreval("1 - A vista")
+      escreval("2 - Parcelar")
+      leia(opt)
+      
+      escolha opt
+       caso 1
+        z <- calc
+        escreval("Valor a vista:  ", z)
+       caso 2
+        escreval("------------------------------------------")
+        escreval("Digite o número de parcelas (1 a 12): ")
+        leia(parcelas)
+        z <- calc*taxaJuros
+        b <- (calc/parcelas) + z
+        escreval("Valor parcelado com juros: ", b )
+      fimescolha
 
-      escreval("---------------------------------------------------------------")
-      escreval("Valor final com juros de ", parcelas,"x : R$ ", valorFinal )
       escreval("---------------------------------------------------------------")
       escreval("Digite seu nome: ")
       leia(nome)
@@ -357,7 +409,7 @@ Inicio
       escreval("")
       escreval("------------------------------------------------------------")
       escreval("SOLICITAÇÃO FEITA, AGORA VAMOS AGENDAR UM ATENDIMENTO")
-      escreval("PRESENCIAL PARA FINALIZAR A SUA COMPRA!!")
+      escreval("PRESENCIAL PARA FINALIZAR A SUA COMPRA COM UM ATENDENTE!!")
       escreval("------------------------------------------------------------")
       escreval("Escolha o dia:")
       escreval("")
@@ -367,6 +419,20 @@ Inicio
       escreval("4 - Quinta-Feira")
       escreval("5 - Sexta-Feira")
       leia(dia)
+
+      escolha dia
+        caso 1
+          x <- "SEGUNDA-FEIRA"
+        caso 2
+          x <- "TERÇA-FEIRA"
+        caso 3
+          x <- "QUARTA-FEIRA"
+        caso 4
+          x <- "QUINTA-FEIRA"
+        caso 5
+          x <- "SEXTA-FEIRA"
+      fimescolha
+
       escreval("------------------------------------------------------------")
       escreval("Horarios Disponiveis: ")
       escreval("")
@@ -374,8 +440,21 @@ Inicio
       escreval("2 - 13:30")
       escreval("3 - 17:00")
       leia(horario)
+
+      escolha horario
+        caso 1
+          y <- "9:40"
+        caso 2
+          y <- "13:30"
+        caso 3
+          y <- "17:00"
+      fimescolha
+
+
+
       escreval("------------------------------------------------------------")
-      escreval("AGENDAMENTO FEITO, OBRIGADO POR ESCOLHER A MÃO NA RODA")
+      escreval("AGENDAMENTO REALIZADO PARA ", x," as ", y)
+      escreval("OBRIGADO POR ESCOLHER A MÃO NA RODA !!")
       escreval("------------------------------------------------------------")
    fimprocedimento
 
@@ -385,7 +464,9 @@ Inicio
       escreval("")
       escreval("---------------------------------")
       escreval("========== Fale Conosco =========")
+      escreval("")
       escreval("Email: atendimento@maonaroda.com")
+      escreval("")
       escreval("Telefone: (99) 9 9999-9999")
    fimprocedimento
 
